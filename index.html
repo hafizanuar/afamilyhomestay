@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Rich link previews/OG -->
+    <meta property="og:title" content="Afamily Homestay, Ipoh">
+    <meta property="og:description" content="Your comfortable and spacious retreat in Ipoh, Malaysia.">
+    <meta property="og:image" content="https://cf.bstatic.com/xdata/images/hotel/max1024x768/507850860.jpg?k=b4e9e04871d37446e5ce1ee098a5d3f2b7f03e226019a82643725832a83cf453&o=&hp=1"> <!-- Placeholder image for OG -->
+    <meta property="og:url" content="YOUR_HOMESTAY_URL_HERE"> <!-- Replace with actual URL -->
+    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <!-- Favicon path -->
+    <link rel="icon" type="image/x-icon" href="https://placehold.co/32x32/000000/FFFFFF?text=AH"> <!-- Placeholder favicon -->
+    <!-- PWA Manifest (if applicable, link to your manifest.json) -->
+    <link rel="manifest" href="/manifest.json">
+    <title>Afamily Homestay, Ipoh</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Tailwind CSS configuration for colors */
+        :root {
+            --color-primary: #F5E5B8; /* Cream Yellow */
+            --color-secondary: #A55A3F; /* Reddish Brown */
+            --color-tertiary: #4B3A32; /* Dark Brown */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-primary); /* Cream Yellow */
+            color: var(--color-secondary); /* Reddish Brown for main text */
+        }
+        header {
+            background-color: var(--color-primary) !important;
+        }
+        /* Override Tailwind's bg-white, bg-gray-50, and bg-gray-100 to use the secondary (Reddish Brown) color for all main sections */
+        .bg-white, .bg-gray-50, .bg-gray-100 {
+            background-color: var(--color-primary) !important;
+            color: var(--color-secondary) !important;
+        }
+        .text-primary { color: var(--color-secondary) !important; }
+        .bg-primary { background-color: var(--color-primary) !important; }
+        .hover\:bg-primary:hover { background-color: var(--color-primary) !important; }
+        .text-secondary { color: var(--color-secondary) !important; }
+        .bg-secondary { background-color: var(--color-secondary) !important; }
+        .hover\:bg-secondary:hover { background-color: var(--color-secondary) !important; }
+        .text-tertiary { color: var(--color-tertiary) !important; }
+        .bg-tertiary { background-color: var(--color-tertiary) !important; }
+        .hover\:bg-tertiary:hover { background-color: var(--color-tertiary) !important; }
+
+        /* Modal styles for image gallery */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 900px; /* Increased max-width for better image display */
+            position: relative;
+            text-align: center;
+        }
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 36px; /* Larger close button */
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+            text-decoration: none;
+        }
+        .carousel-container {
+            position: relative;
+            max-width: 800px; /* Adjusted max-width for carousel */
+            margin: 20px auto;
+            overflow: hidden; /* Hide overflow for smooth transitions */
+        }
+        .carousel-image {
+            display: none;
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            transition: opacity 0.5s ease-in-out; /* Smooth fade effect */
+        }
+        .carousel-image.active {
+            display: block;
+            opacity: 1;
+        }
+        .carousel-nav-button {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px; /* Larger navigation buttons */
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.6); /* Darker background for buttons */
+            border: none;
+            outline: none;
+        }
+        .carousel-nav-button.left {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .carousel-nav-button.right {
+            right: 0;
+            border-radius: 0 3px 3px 0;
+        }
+        .carousel-nav-button:hover {
+            background-color: rgba(0,0,0,0.9);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header Section -->
+    <header class="bg-white shadow-md py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-primary">Afamily Homestay</a>
+            <!-- Mobile menu button (hamburger icon) -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <!-- Desktop navigation -->
+            <nav class="hidden md:block"> <!-- Hidden on mobile, block (flex) on medium screens and up -->
+                <ul class="flex space-x-6">
+                    <li><a href="#location" class="text-gray-600 hover:text-primary transition duration-300">Location</a></li>
+                    <li><a href="#rates" class="text-gray-600 hover:text-primary transition duration-300">Rates</a></li>
+                    <li><a href="#features" class="text-gray-600 hover:text-primary transition duration-300">Features</a></li>
+                    <li><a href="#amenities" class="text-gray-600 hover:text-primary transition duration-300">Amenities</a></li>
+                    <li><a href="#more-info" class="text-gray-600 hover:text-primary transition duration-300">More Info</a></li>
+                    <li><a href="#faq" class="text-gray-600 hover:text-primary transition duration-300">FAQ</a></li>
+                    <li><a href="#testimonials" class="text-gray-600 hover:text-primary transition duration-300">Testimonials</a></li>
+                    <li><a href="#gallery" class="text-gray-600 hover:text-primary transition duration-300">Gallery</a></li>
+                    <li><a href="#contact" class="text-gray-600 hover:text-primary transition duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Mobile menu links (will be toggled by JavaScript) -->
+        <div id="mobile-nav-links" class="hidden md:hidden bg-white w-full absolute top-full left-0 shadow-lg py-4 z-40">
+            <ul class="flex flex-col space-y-2 px-6">
+                <li><a href="#location" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Location</a></li>
+                <li><a href="#rates" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Rates</a></li>
+                <li><a href="#features" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Features</a></li>
+                <li><a href="#amenities" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Amenities</a></li>
+                <li><a href="#more-info" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">More Info</a></li>
+                <li><a href="#faq" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">FAQ</a></li>
+                <li><a href="#testimonials" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Testimonials</a></li>
+                <li><a href="#gallery" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Gallery</a></li>
+                <li><a href="#contact" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative bg-cover bg-center h-screen flex items-center justify-center text-white" style="background-image: url('/photos/356951398.jpg');">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="z-10 text-center p-4">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 animate-fade-in-down">Afamily Homestay, Ipoh</h1>
+                <p class="text-xl md:text-2xl mb-8 animate-fade-in-up">Your comfortable and spacious retreat in Ipoh, Malaysia.</p>
+                <a href="#contact" class="inline-block bg-secondary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary transition duration-300 transform hover:scale-105">Book Your Stay</a>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location" class="py-16 bg-white">
+             <div class="container mx-auto px-4 text-center max-w-4xl">
+                <h2 class="text-4xl font-bold text-primary mb-8">Find Us Here</h2>
+                <p class="text-lg leading-relaxed text-gray-700 mb-8">
+                Our prime location ensures you're always close to the action.
+                 </p>
+            <div class="aspect-w-16 aspect-h-9 w-full h-96 rounded-xl overflow-hidden shadow-xl mb-8">
+                <!-- Google Maps Embed - Replace with actual embed code for interactive map -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.160563492035!2d101.11854777497847!3d4.565142395409417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31caedd3c5f38379%3A0xd6d3b0c52db8ed25!2s73%2C%20Persiaran%20Pinggir%20Rapat%205%2C%20Rapat%20Setia%2C%2031350%20Ipoh%2C%20Perak!5e0!3m2!1sen!2smy!4v1753017034613!5m2!1sen!2smy" 
+                        width="600" 
+                        height="450" 
+                        style="border:0;" allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <p class="text-lg leading-relaxed max-w-3xl mx-auto">
+                📍 73, Persiaran Pinggir Rapat 5, Taman Saikat, 31350 Ipoh, Malaysia
+            </p>
+        </div>
+    </section>
+
+        <!-- Rates Section -->
+        <section id="rates" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4 text-center max-w-4xl">
+                <h2 class="text-4xl font-bold mb-6 text-primary">What's the rate?</h2>
+                <p class="text-lg leading-relaxed text-gray-700 mb-8">
+                    We offer two packages. Direct bookings are significantly lower than other platforms.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center items-center">
+                    <!-- Rate 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                        <h3 class="text-2xl font-bold text-primary mb-4">Standard Stay</h3>
+                        <p class="text-lg text-gray-700 mb-2">RM200/night</p>
+                        <ul class="text-gray-600 mb-4 space-y-1">
+                            <li>✔️ 3 Bedrooms, 2 Bathrooms</li>
+                            <li>✔️ Free WiFi & Parking</li>
+                            <li>✔️ Fully furnished</li>
+                        </ul>
+                        <button class="mt-4 px-6 py-2 bg-primary text-gray rounded-full font-semibold hover:bg-blue-600 transition">Book Now</button>
+                    </div>
+                    <!-- Rate 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                        <h3 class="text-2xl font-bold text-primary mb-4">Family Package</h3>
+                        <p class="text-lg text-gray-700 mb-2">RM350/night</p>
+                        <ul class="text-gray-600 mb-4 space-y-1">
+                            <li>✔️ Up to 8 guests</li>
+                            <li>✔️ Extra beds included</li>
+                            <li>✔️ Early check-in (subject to availability)</li>
+                        </ul>
+                        <button class="mt-4 px-6 py-2 bg-primary text-gray rounded-full font-semibold hover:bg-blue-600 transition">Book Now</button>
+                    </div>
+                </div>
+                <p class="text-gray-600 mt-4">RM10 per hour for early check-in or late check-out, subject to availability.</p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 text-primary">Why Choose Afamily Homestay?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                        <div class="text-5xl mb-4 text-primary">🏡</div>
+                        <h3 class="text-2xl font-bold mb-2 text-primary">Spacious & Comfortable</h3>
+                        <p class="text-gray-700">Enjoy a roomy, fully-furnished home perfect for families and groups.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                        <div class="text-5xl mb-4 text-primary">📍</div>
+                        <h3 class="text-2xl font-bold mb-2 text-primary">Prime Location</h3>
+                        <p class="text-gray-700">Located in the heart of Ipoh, close to attractions, food, and shopping.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                        <div class="text-5xl mb-4 text-primary">🧹</div>
+                        <h3 class="text-2xl font-bold mb-2 text-primary">Clean & Well-Maintained</h3>
+                        <p class="text-gray-700">Professional cleaning and regular maintenance for your peace of mind.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Amenities Section -->
+        <section id="amenities" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-primary">Our Amenities</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow text-center">
+                        <div class="text-4xl mb-2 text-primary">🛏️</div>
+                        <h4 class="font-semibold mb-1">3 Bedrooms</h4>
+                        <p class="text-gray-600 text-sm">Comfortable beds for restful nights</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow text-center">
+                        <div class="text-4xl mb-2 text-primary">🚿</div>
+                        <h4 class="font-semibold mb-1">2 Bathrooms</h4>
+                        <p class="text-gray-600 text-sm">Clean, modern, and fully equipped</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow text-center">
+                        <div class="text-4xl mb-2 text-primary">📶</div>
+                        <h4 class="font-semibold mb-1">Free WiFi</h4>
+                        <p class="text-gray-600 text-sm">High-speed internet throughout</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow text-center">
+                        <div class="text-4xl mb-2 text-primary">🚗</div>
+                        <h4 class="font-semibold mb-1">Parking</h4>
+                        <p class="text-gray-600 text-sm">Private and secure parking space</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Info Section -->
+        <section id="more-info" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 text-primary">More Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary mb-2">Check-in & Check-out</h4>
+                        <p class="text-gray-700 text-sm">Check-in: 3:00 PM | Check-out: 12:00 PM. Early/late available upon request.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary mb-2">House Rules</h4>
+                        <p class="text-gray-700 text-sm">No smoking indoors. No pets. Quiet hours after 10 PM. Please respect the property.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 text-primary">Frequently Asked Questions</h2>
+                <div class="space-y-8 max-w-4xl mx-auto">
+                    <div>
+                        <h4 class="font-semibold text-primary mb-2">Is parking available?</h4>
+                        <p class="text-gray-700">Yes, we provide free private parking for guests.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-primary mb-2">Can I check in early?</h4>
+                        <p class="text-gray-700">Early check-in is possible if available. Please contact us in advance.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-primary mb-2">Are pets allowed?</h4>
+                        <p class="text-gray-700">Sorry, pets are not allowed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-16 bg-white">
+            <div class="container mx-auto px-4 text-center max-w-4xl">
+                <h2 class="text-4xl font-bold mb-12 text-primary">What Our Guests Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-xl shadow">
+                        <p class="text-lg text-gray-700 mb-2">"Spacious, clean, and very comfortable for our family trip. Highly recommended!"</p>
+                        <span class="block text-primary font-semibold">– Aina, Kuala Lumpur</span>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow">
+                        <p class="text-lg text-gray-700 mb-2">"Great location and friendly host. Will definitely come again!"</p>
+                        <span class="block text-primary font-semibold">– Jason, Singapore</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-primary mb-8">Contact Us</h2>
+                <p class="text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+                    Interested in booking Afamily Homestay? Contact us directly or visit our listing for more details and to check availability.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+                    <a href="https://www.booking.com/hotel/my/afamily-homestay-ipoh.en-gb.html" target="_blank" class="bg-secondary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary transition duration-300 transform hover:scale-105">View on Booking.com</a>
+                    <p class="text-lg">Or call us at: <span class="font-bold">+60 12-345 6789</span></p> <!-- Placeholder contact number -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-lg mb-2">&copy; 2025 Afamily Homestay. All rights reserved.</p>
+            <p class="text-sm">Designed with ❤️ for a comfortable urban stay.</p>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal Structure -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeGalleryModal()">&times;</span>
+            <h3 id="modalTitle" class="text-3xl font-bold text-primary mb-6 text-center"></h3>
+            <div class="carousel-container">
+                <img id="carouselImage" src="" alt="Gallery Image" class="carousel-image active">
+                <button class="carousel-nav-button left" onclick="prevImage()">&#10094;</button>
+                <button class="carousel-nav-button right" onclick="nextImage()">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Gallery Modal and Mobile Menu -->
+    <script>
+        // Gallery Modal Logic
+        let currentImageIndex = 0;
+        let galleryImages = [];
+        const modalTitleElement = document.getElementById('modalTitle');
+        const carouselImageElement = document.getElementById('carouselImage');
+        const galleryModal = document.getElementById('galleryModal');
+
+        // Function to open the gallery modal
+        function openGalleryModal(title, imageUrl) {
+            // Populate galleryImages array if it's empty
+            if (galleryImages.length === 0) {
+                document.querySelectorAll('#gallery img').forEach(img => {
+                    galleryImages.push({
+                        src: img.src,
+                        alt: img.alt
+                    });
+                });
+            }
+
+            // Find the index of the clicked image to set the starting point of the carousel
+            currentImageIndex = galleryImages.findIndex(img => img.src === imageUrl);
+
+            // Set modal content
+            modalTitleElement.textContent = title;
+            carouselImageElement.src = imageUrl;
+            carouselImageElement.alt = title;
+
+            // Display the modal
+            galleryModal.style.display = 'flex'; // Use flex to center the modal content
+        }
+
+        // Function to close the gallery modal
+        function closeGalleryModal() {
+            galleryModal.style.display = 'none';
+        }
+
+        // Function to change the image in the carousel
+        function changeImage(n) {
+            currentImageIndex += n;
+
+            // Loop back to the start or end if boundaries are reached
+            if (currentImageIndex >= galleryImages.length) {
+                currentImageIndex = 0;
+            }
+            if (currentImageIndex < 0) {
+                currentImageIndex = galleryImages.length - 1;
+            }
+
+            // Update image source and alt text
+            carouselImageElement.src = galleryImages[currentImageIndex].src;
+            carouselImageElement.alt = galleryImages[currentImageIndex].alt;
+            modalTitleElement.textContent = galleryImages[currentImageIndex].alt; // Update modal title with current image alt text
+        }
+
+        // Functions for next and previous image navigation
+        function nextImage() {
+            changeImage(1);
+        }
+
+        function prevImage() {
+            changeImage(-1);
+        }
+
+        // Close modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            if (event.target == galleryModal) {
+                closeGalleryModal();
+            }
+        }
+
+        // Mobile Menu Logic
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileNavLinks = document.getElementById('mobile-nav-links');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileNavLinks.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileNavLinks.classList.contains('hidden')) {
+                    mobileNavLinks.classList.add('hidden');
+                }
+            });
+        });
+
+        // Close mobile menu if resized to desktop from mobile
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) { // Tailwind's md breakpoint
+                mobileNavLinks.classList.add('hidden'); // Ensure mobile menu is hidden on desktop
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "afamily-homestay",
+  "version": "2025.7.20",
+  "description": "homestay landing page",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host --open",
+    "build": "vite build",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "vite": "^4.0.4"
+  }
+}
