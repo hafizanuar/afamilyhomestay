@@ -6,49 +6,234 @@
     <!-- Rich link previews/OG -->
     <meta property="og:title" content="Afamily Homestay, Ipoh">
     <meta property="og:description" content="Your comfortable and spacious retreat in Ipoh, Malaysia.">
-    <meta property="og:image" content="https://cf.bstatic.com/xdata/images/hotel/max1024x768/507850860.jpg?k=b4e9e04871d37446e5ce1ee098a5d3f2b7f03e226019a82643725832a83cf453&o=&hp=1"> <!-- Placeholder image for OG -->
+    <meta property="og:image" content="/Afamily Homestay.jpg"> <!-- Updated to new logo image -->
     <meta property="og:url" content="YOUR_HOMESTAY_URL_HERE"> <!-- Replace with actual URL -->
     <meta property="og:type" content="website">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <!-- Favicon path -->
-    <link rel="icon" type="image/x-icon" href="https://placehold.co/32x32/000000/FFFFFF?text=AH"> <!-- Placeholder favicon -->
+    <link rel="icon" type="image/x-icon" href="/Afamily Homestay.jpg"> <!-- Updated to new logo image -->
     <!-- PWA Manifest (if applicable, link to your manifest.json) -->
     <link rel="manifest" href="/manifest.json">
     <title>Afamily Homestay, Ipoh</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom Tailwind CSS configuration for colors */
+        /* Custom CSS variables based on the new logo's theme */
         :root {
-            --color-primary: #F5E5B8; /* Cream Yellow */
-            --color-secondary: #A55A3F; /* Reddish Brown */
-            --color-tertiary: #4B3A32; /* Dark Brown */
+            --color-logo-light-blue: #A0E0FF; /* Light blue from logo background */
+            --color-logo-orange: #FF6B35; /* Orange from "Afamily" text */
+            --color-logo-dark-grey: #333333; /* Dark grey from "HomeStay" text */
+            --color-logo-cream-yellow: #F5E5B8; /* Cream yellow from house walls in logo */
+            --color-logo-reddish-brown: #A55A3F; /* Reddish brown from house roof in logo */
+
+            /* Semantic mapping for Tailwind utility classes to new theme colors */
+            --color-primary: var(--color-logo-orange); /* Used for headings, main accents */
+            --color-secondary: var(--color-logo-orange); /* Used for buttons, other accents */
+            --color-tertiary: var(--color-logo-dark-grey); /* Used for dark text, some backgrounds */
         }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--color-primary); /* Cream Yellow */
-            color: var(--color-secondary); /* Reddish Brown for main text */
+            background-color: var(--color-logo-light-blue); /* Overall light background */
+            color: var(--color-logo-dark-grey); /* Default text color */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
+
+        /* Header/Navbar styles */
         header {
-            background-color: var(--color-primary) !important;
+            background-color: var(--color-logo-light-blue); /* Light blue background */
+            color: var(--color-logo-dark-grey); /* Dark grey text */
         }
-        /* Override Tailwind's bg-white, bg-gray-50, and bg-gray-100 to use the secondary (Reddish Brown) color for all main sections */
-        .bg-white, .bg-gray-50, .bg-gray-100 {
-            background-color: var(--color-primary) !important;
-            color: var(--color-secondary) !important;
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1.5rem; /* py-2 px-6 */
         }
-        .text-primary { color: var(--color-secondary) !important; }
-        .bg-primary { background-color: var(--color-primary) !important; }
-        .hover\:bg-primary:hover { background-color: var(--color-primary) !important; }
-        .text-secondary { color: var(--color-secondary) !important; }
-        .bg-secondary { background-color: var(--color-secondary) !important; }
-        .hover\:bg-secondary:hover { background-color: var(--color-secondary) !important; }
-        .text-tertiary { color: var(--color-tertiary) !important; }
-        .bg-tertiary { background-color: var(--color-tertiary) !important; }
-        .hover\:bg-tertiary:hover { background-color: var(--color-tertiary) !important; }
+
+        .navbar-logo {
+            height: 40px; /* Adjust as needed */
+            width: auto;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 1.5rem; /* space-x-6 */
+        }
+
+        .navbar-link {
+            color: var(--color-logo-dark-grey); /* Dark grey link text */
+            font-weight: 500; /* font-medium */
+            transition: color 0.3s ease;
+        }
+
+        .navbar-link:hover {
+            color: var(--color-logo-orange); /* Orange on hover */
+        }
+
+        .navbar-hamburger {
+            display: none; /* Hidden by default, shown on mobile */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .navbar-hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-logo-dark-grey); /* Dark grey lines */
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile menu specific styles */
+        @media (max-width: 767px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .navbar-logo {
+                height: 36px;
+                margin-bottom: 0.5rem;
+            }
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--color-logo-light-blue);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 50;
+            }
+            .navbar-links.active {
+                display: flex;
+            }
+            .navbar-link {
+                padding: 0.75rem 1.5rem;
+                text-align: left;
+                width: 100%;
+                color: var(--color-logo-dark-grey);
+            }
+            .navbar-hamburger {
+                display: flex;
+                margin-left: auto;
+            }
+            .navbar a span {
+                font-size: 1.5rem;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .navbar {
+                flex-direction: row;
+                align-items: center;
+                padding: 1rem 1.5rem;
+            }
+            .navbar-logo {
+                height: 36px;
+                margin-bottom: 0;
+            }
+            .navbar-links {
+                display: flex !important;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
+                position: static;
+                background: none;
+                box-shadow: none;
+                padding: 0;
+            }
+            .navbar-link {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+            }
+            .navbar-hamburger {
+                display: none !important;
+            }
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .grid {
+                gap: 1rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .navbar {
+                flex-direction: row;
+                align-items: center;
+            }
+            .navbar-logo {
+                height: 40px;
+                margin-bottom: 0;
+            }
+            .navbar-links {
+                display: flex !important;
+                flex-direction: row;
+                position: static;
+                background: none;
+                box-shadow: none;
+                padding: 0;
+            }
+            .navbar-hamburger {
+                display: none !important;
+            }
+        }
+        /* Section grid and container adjustments for 768px */
+        @media (max-width: 1024px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .grid {
+                gap: 1rem;
+            }
+        }
+
+        /* Hero Section specific styling */
+        .hero-section-button {
+            background-color: var(--color-logo-orange); /* Orange button */
+            color: white; /* White text */
+        }
+        .hero-section-button:hover {
+            background-color: #E65A2C; /* Slightly darker orange on hover */
+        }
+
+        /* Section backgrounds and text colors */
+        .section-bg-light {
+            background-color: var(--color-logo-light-blue); /* Light blue for light sections */
+            color: var(--color-logo-dark-grey); /* Dark grey text */
+        }
+        .section-bg-dark {
+            background-color: var(--color-logo-dark-grey); /* Dark grey for dark sections */
+            color: var(--color-logo-cream-yellow); /* Cream yellow text */
+        }
+
+        /* Card backgrounds and text colors */
+        .card-bg-light {
+            background-color: white; /* White cards on light background */
+            color: var(--color-logo-dark-grey); /* Dark grey text */
+        }
+        .card-bg-dark {
+            background-color: var(--color-logo-reddish-brown); /* Reddish brown cards on dark background */
+            color: var(--color-logo-cream-yellow); /* Cream yellow text */
+        }
+
+        /* Specific text colors */
+        .text-primary-heading { color: var(--color-logo-orange); } /* Orange for main headings */
+        .text-secondary-accent { color: var(--color-logo-orange); } /* Orange for accents */
+        .text-dark-contrast { color: var(--color-logo-dark-grey); } /* Dark grey for contrast */
+        .text-light-contrast { color: var(--color-logo-cream-yellow); } /* Cream yellow for contrast on dark */
 
         /* Modal styles for image gallery */
         .modal {
@@ -136,287 +321,271 @@
         .carousel-nav-button:hover {
             background-color: rgba(0,0,0,0.9);
         }
+
+        /* Footer styles */
+        footer {
+            background-color: var(--color-tertiary) !important;
+            color: #fff !important;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="section-bg-light antialiased">
     <!-- Header Section -->
     <header class="bg-white shadow-md py-4 sticky top-0 z-50">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold text-primary">Afamily Homestay</a>
-            <!-- Mobile menu button (hamburger icon) -->
-            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-            <!-- Desktop navigation -->
-            <nav class="hidden md:block"> <!-- Hidden on mobile, block (flex) on medium screens and up -->
-                <ul class="flex space-x-6">
-                    <li><a href="#location" class="text-gray-600 hover:text-primary transition duration-300">Location</a></li>
-                    <li><a href="#rates" class="text-gray-600 hover:text-primary transition duration-300">Rates</a></li>
-                    <li><a href="#features" class="text-gray-600 hover:text-primary transition duration-300">Features</a></li>
-                    <li><a href="#gallery" class="text-gray-600 hover:text-primary transition duration-300">Gallery</a></li>
-                    <li><a href="#amenities" class="text-gray-600 hover:text-primary transition duration-300">Amenities</a></li>
-                    <li><a href="#more-info" class="text-gray-600 hover:text-primary transition duration-300">More Info</a></li>
-                    <li><a href="#faq" class="text-gray-600 hover:text-primary transition duration-300">FAQ</a></li>
-                    <li><a href="#testimonials" class="text-gray-600 hover:text-primary transition duration-300">Testimonials</a></li>
-                    <li><a href="#contact" class="text-gray-600 hover:text-primary transition duration-300">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-        <!-- Mobile menu links (will be toggled by JavaScript) -->
-        <div id="mobile-nav-links" class="hidden md:hidden bg-white w-full absolute top-full left-0 shadow-lg py-4 z-40">
-            <ul class="flex flex-col space-y-2 px-6">
-                <li><a href="#location" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Location</a></li>
-                <li><a href="#rates" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Rates</a></li>
-                <li><a href="#features" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Features</a></li>
-                <li><a href="#amenities" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Amenities</a></li>
-                <li><a href="#more-info" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">More Info</a></li>
-                <li><a href="#faq" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">FAQ</a></li>
-                <li><a href="#testimonials" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Testimonials</a></li>
-                <li><a href="#gallery" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Gallery</a></li>
-                <li><a href="#contact" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Contact</a></li>
-            </ul>
+            <a href="#" class="flex items-center">
+                <img src="/photos/Afamily Homestay.jpg" alt="Afamily Homestay Logo" class="h-10 w-10 mr-3 rounded-full shadow">
+                <span class="text-3xl font-bold text-primary">Afamily Homestay</span>
+            </a>
+            <div class="navbar-links" id="navbarLinks">
+                <a href="#location" class="navbar-link">Location</a>
+                <a href="#rates" class="navbar-link">Rates</a>
+                <a href="#amenities" class="navbar-link">Amenities</a>
+                <a href="#gallery" class="navbar-link">Gallery</a>
+                <a href="#contact" class="navbar-link">Contact</a>
+            </div>
+            <div class="navbar-hamburger" id="navbarHamburger" aria-label="Open menu" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="relative bg-cover bg-center h-screen flex items-center justify-center text-white" style="background-image: url('/photos/356951398.jpg');">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-            <div class="z-10 text-center p-4">
-                <h1 class="text-5xl md:text-6xl font-bold mb-4 animate-fade-in-down">Afamily Homestay, Ipoh</h1>
-                <p class="text-xl md:text-2xl mb-8 animate-fade-in-up">Your comfortable and spacious retreat in Ipoh, Malaysia.</p>
-                <a href="#contact" class="inline-block bg-secondary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary transition duration-300 transform hover:scale-105">Book Your Stay</a>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section class="relative bg-cover bg-center h-screen flex items-center justify-center text-white" style="background-image: url('/photos/403013374.jpg');">
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <div class="z-10 text-center p-4">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 animate-fade-in-down">Afamily Homestay, Ipoh</h1>
+            <p class="text-xl md:text-2xl mb-8 animate-fade-in-up">Your comfortable and spacious retreat in Ipoh, Malaysia.</p>
+            <a href="#contact" class="inline-block bg-secondary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary transition duration-300 transform hover:scale-105">Book Your Stay</a>
+        </div>
+    </section>
 
+    <main>
         <!-- Location Section -->
-        <section id="location" class="py-16 bg-white">
+        <section id="location" class="py-16 section-bg-light">
              <div class="container mx-auto px-4 text-center max-w-4xl">
-                <h2 class="text-4xl font-bold text-primary mb-8">Find Us Here</h2>
-                <p class="text-lg leading-relaxed text-gray-700 mb-8">
+                <h2 class="text-4xl font-bold text-primary-heading mb-8">Find Us Here</h2>
+                <p class="text-lg leading-relaxed text-dark-contrast mb-8">
                 Our prime location ensures you're always close to the action.
                  </p>
             <div class="aspect-w-16 aspect-h-9 w-full h-96 rounded-xl overflow-hidden shadow-xl mb-8">
-                <!-- Google Maps Embed - Replace with actual embed code for interactive map -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.160563492035!2d101.11854777497847!3d4.565142395409417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31caedd3c5f38379%3A0xd6d3b0c52db8ed25!2s73%2C%20Persiaran%20Pinggir%20Rapat%205%2C%20Rapat%20Setia%2C%2031350%20Ipoh%2C%20Perak!5e0!3m2!1sen!2smy!4v1753017034613!5m2!1sen!2smy" 
-                        width="600" 
-                        height="450" 
-                        style="border:0;" allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+                <!-- Google Maps Embed for Ipoh location -->
+                <iframe
+                src="https://www.google.com/maps?q=73,+Persiaran+Pinggir+Rapat+5,+Taman+Saikat,+31350+Ipoh,+Malaysia&output=embed"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
             </div>
-            <p class="text-lg leading-relaxed max-w-3xl mx-auto">
+            <p class="text-lg leading-relaxed text-dark-contrast max-w-3xl mx-auto">
                 📍 73, Persiaran Pinggir Rapat 5, Taman Saikat, 31350 Ipoh, Malaysia
             </p>
         </div>
     </section>
 
         <!-- Rates Section -->
-        <section id="rates" class="py-16 bg-gray-100">
+        <section id="rates" class="py-16 section-bg-light">
             <div class="container mx-auto px-4 text-center max-w-4xl">
-                <h2 class="text-4xl font-bold mb-6 text-primary">What's the rate?</h2>
-                <p class="text-lg leading-relaxed text-gray-700 mb-8">
+                <h2 class="text-4xl font-bold text-primary-heading mb-6">What's the rate?</h2>
+                <p class="text-lg leading-relaxed text-dark-contrast mb-8">
                     We offer two packages. Direct bookings are significantly lower than other platforms.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center items-center">
                     <!-- Rate 1 -->
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <h3 class="text-2xl font-bold text-primary mb-4">Standard Stay</h3>
-                        <p class="text-lg text-gray-700 mb-2">RM200/night</p>
-                        <ul class="text-gray-600 mb-4 space-y-1">
+                    <div class="card-bg-light p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                        <h3 class="text-2xl font-bold text-primary-heading mb-4">Standard Stay</h3>
+                        <p class="text-lg text-dark-contrast mb-2">RM200/night</p>
+                        <ul class="text-dark-contrast mb-4 space-y-1">
                             <li>✔️ 3 Bedrooms, 2 Bathrooms</li>
                             <li>✔️ Free WiFi & Parking</li>
                             <li>✔️ Fully furnished</li>
                         </ul>
-                        <button class="mt-4 px-6 py-2 bg-primary text-gray rounded-full font-semibold hover:bg-blue-600 transition">Book Now</button>
+                        <button class="mt-4 px-6 py-2 bg-secondary text-white rounded-full font-semibold hover:bg-primary transition">Book Now</button>
                     </div>
                     <!-- Rate 2 -->
-                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <h3 class="text-2xl font-bold text-primary mb-4">Family Package</h3>
-                        <p class="text-lg text-gray-700 mb-2">RM350/night</p>
-                        <ul class="text-gray-600 mb-4 space-y-1">
+                    <div class="card-bg-light p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                        <h3 class="text-2xl font-bold text-primary-heading mb-4">Family Package</h3>
+                        <p class="text-lg text-dark-contrast mb-2">RM350/night</p>
+                        <ul class="text-dark-contrast mb-4 space-y-1">
                             <li>✔️ Up to 8 guests</li>
                             <li>✔️ Extra beds included</li>
                             <li>✔️ Early check-in (subject to availability)</li>
                         </ul>
-                        <button class="mt-4 px-6 py-2 bg-primary text-gray rounded-full font-semibold hover:bg-blue-600 transition">Book Now</button>
+                        <button class="mt-4 px-6 py-2 bg-secondary text-white rounded-full font-semibold hover:bg-primary transition">Book Now</button>
                     </div>
                 </div>
-                <p class="text-gray-600 mt-4">RM10 per hour for early check-in or late check-out, subject to availability.</p>
+                <p class="text-dark-contrast mt-4">RM10 per hour for early check-in or late check-out, subject to availability.</p>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="py-16 bg-white">
+        <section id="features" class="py-16 section-bg-light">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-12 text-primary">Why Choose Afamily Homestay?</h2>
+                <h2 class="text-4xl font-bold text-center mb-12 text-primary-heading">Why Choose Afamily Homestay?</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Feature 1 -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="text-5xl mb-4 text-primary">🏡</div>
-                        <h3 class="text-2xl font-bold mb-2 text-primary">Spacious & Comfortable</h3>
-                        <p class="text-gray-700">Enjoy a roomy, fully-furnished home perfect for families and groups.</p>
+                    <div class="card-bg-light p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                        <div class="text-5xl mb-4 text-secondary-accent">🏡</div>
+                        <h3 class="text-2xl font-bold mb-2 text-primary-heading">Spacious & Comfortable</h3>
+                        <p class="text-dark-contrast">Enjoy a roomy, fully-furnished home perfect for families and groups.</p>
                     </div>
                     <!-- Feature 2 -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="text-5xl mb-4 text-primary">📍</div>
-                        <h3 class="text-2xl font-bold mb-2 text-primary">Prime Location</h3>
-                        <p class="text-gray-700">Located in the heart of Ipoh, close to attractions, food, and shopping.</p>
+                    <div class="card-bg-light p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                        <div class="text-5xl mb-4 text-secondary-accent">📍</div>
+                        <h3 class="text-2xl font-bold mb-2 text-primary-heading">Prime Location</h3>
+                        <p class="text-dark-contrast">Located in the heart of Ipoh, close to attractions, food, and shopping.</p>
                     </div>
                     <!-- Feature 3 -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-                        <div class="text-5xl mb-4 text-primary">🧹</div>
-                        <h3 class="text-2xl font-bold mb-2 text-primary">Clean & Well-Maintained</h3>
-                        <p class="text-gray-700">Professional cleaning and regular maintenance for your peace of mind.</p>
+                    <div class="card-bg-light p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                        <div class="text-5xl mb-4 text-secondary-accent">🧹</div>
+                        <h3 class="text-2xl font-bold mb-2 text-primary-heading">Clean & Well-Maintained</h3>
+                        <p class="text-dark-contrast">Professional cleaning and regular maintenance for your peace of mind.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Gallery Section -->
-        <section id="gallery" class="py-16 bg-white">
+        <section id="gallery" class="py-16 section-bg-light">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold text-primary mb-12">Gallery</h2>
+                <h2 class="text-4xl font-bold text-primary-heading mb-12">Gallery</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    <img src="/photos/356951398.jpg" alt="Gallery Photo 1" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 1', '/photos/356951398.jpg')">
-                    <img src="/photos/357068763.jpg" alt="Gallery Photo 2" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 2', '/photos/357068763.jpg')">
-                    <img src="/photos/357068770.jpg" alt="Gallery Photo 3" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 3', '/photos/357068770.jpg')">
-                    <img src="/photos/357068774.jpg" alt="Gallery Photo 4" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 4', '/photos/357068774.jpg')">
-                    <img src="/photos/357068780.jpg" alt="Gallery Photo 5" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 5', '/photos/357068780.jpg')">
-                    <img src="/photos/357068782.jpg" alt="Gallery Photo 6" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 6', '/photos/357068782.jpg')">
-                    <img src="/photos/357068787.jpg" alt="Gallery Photo 7" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 7', '/photos/357068787.jpg')">
-                    <img src="/photos/357068788.jpg" alt="Gallery Photo 8" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 8', '/photos/357068788.jpg')">
-                    <img src="/photos/357068790.jpg" alt="Gallery Photo 9" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 9', '/photos/357068790.jpg')">
-                    <img src="/photos/357068794.jpg" alt="Gallery Photo 10" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 10', '/photos/357068794.jpg')">
-                    <img src="/photos/357680925.jpg" alt="Gallery Photo 11" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 11', '/photos/357680925.jpg')">
-                    <img src="/photos/357680930.jpg" alt="Gallery Photo 12" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 12', '/photos/357680930.jpg')">
-                    <img src="/photos/357680948.jpg" alt="Gallery Photo 13" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 13', '/photos/357680948.jpg')">
-                    <img src="/photos/357680951.jpg" alt="Gallery Photo 14" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 14', '/photos/357680951.jpg')">
-                    <img src="/photos/357680954.jpg" alt="Gallery Photo 15" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 15', '/photos/357680954.jpg')">
-                    <img src="/photos/357680957.jpg" alt="Gallery Photo 16" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 16', '/photos/357680957.jpg')">
-                    <img src="/photos/357680960.jpg" alt="Gallery Photo 17" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 17', '/photos/357680960.jpg')">
-                    <img src="/photos/403013374.jpg" alt="Gallery Photo 18" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo 18', '/photos/403013374.jpg')">
+                    <!-- Local photos dump start -->
+                    <img src="/photos/356951398.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/356951398.jpg')">
+                    <img src="/photos/357068763.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357068763.jpg')">
+                    <img src="/photos/357068770.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357068770.jpg')">
+                    <img src="/photos/357068774.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357068774.jpg')">
+                    <img src="/photos/357068780.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357068780.jpg')">
+                    <img src="/photos/357068782.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357068782.jpg')">
+                    <img src="/photos/357068787.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357068787.jpg')">
+                    <img src="/photos/357068788.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357068788.jpg')">
+                    <img src="/photos/357068790.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357068790.jpg')">
+                    <img src="/photos/357068794.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357068794.jpg')">
+                    <img src="/photos/357680925.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357680925.jpg')">
+                    <img src="/photos/357680930.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357680930.jpg')">
+                    <img src="/photos/357680948.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357680948.jpg')">
+                    <img src="/photos/357680951.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357680951.jpg')">
+                    <img src="/photos/357680954.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357680954.jpg')">
+                    <img src="/photos/357680957.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357680957.jpg')">
+                    <img src="/photos/357680960.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/357680960.jpg')">
+                    <img src="/photos/403013374.jpg" alt="Gallery Photo" class="w-full h-48 object-cover rounded-lg shadow-md cursor-pointer transform hover:scale-105 transition duration-300" onclick="openGalleryModal('Gallery Photo', '/photos/403013374.jpg')">
+                    <!-- Local photos dump end -->
                 </div>
             </div>
         </section>
 
         <!-- Amenities Section -->
-        <section id="amenities" class="py-16 bg-gray-100">
+        <section id="amenities" class="py-16 section-bg-light">
             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-12 text-primary">Our Amenities</h2>
+                <h2 class="text-4xl font-bold text-center mb-12 text-primary-heading">Our Amenities</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-xl shadow text-center">
-                        <div class="text-4xl mb-2 text-primary">🛏️</div>
-                        <h4 class="font-semibold mb-1">3 Bedrooms</h4>
-                        <p class="text-gray-600 text-sm">Comfortable beds for restful nights</p>
+                    <div class="card-bg-light p-6 rounded-xl shadow text-center">
+                        <div class="text-4xl mb-2 text-secondary-accent">🛏️</div>
+                        <h4 class="font-semibold mb-1 text-primary-heading">3 Bedrooms</h4>
+                        <p class="text-dark-contrast text-sm">Comfortable beds for restful nights</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow text-center">
-                        <div class="text-4xl mb-2 text-primary">🚿</div>
-                        <h4 class="font-semibold mb-1">2 Bathrooms</h4>
-                        <p class="text-gray-600 text-sm">Clean, modern, and fully equipped</p>
+                    <div class="card-bg-light p-6 rounded-xl shadow text-center">
+                        <div class="text-4xl mb-2 text-secondary-accent">🚿</div>
+                        <h4 class="font-semibold mb-1 text-primary-heading">2 Bathrooms</h4>
+                        <p class="text-dark-contrast text-sm">Clean, modern, and fully equipped</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow text-center">
-                        <div class="text-4xl mb-2 text-primary">📶</div>
-                        <h4 class="font-semibold mb-1">Free WiFi</h4>
-                        <p class="text-gray-600 text-sm">High-speed internet throughout</p>
+                    <div class="card-bg-light p-6 rounded-xl shadow text-center">
+                        <div class="text-4xl mb-2 text-secondary-accent">📶</div>
+                        <h4 class="font-semibold mb-1 text-primary-heading">Free WiFi</h4>
+                        <p class="text-dark-contrast text-sm">High-speed internet throughout</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow text-center">
-                        <div class="text-4xl mb-2 text-primary">🚗</div>
-                        <h4 class="font-semibold mb-1">Parking</h4>
-                        <p class="text-gray-600 text-sm">Private and secure parking space</p>
+                    <div class="card-bg-light p-6 rounded-xl shadow text-center">
+                        <div class="text-4xl mb-2 text-secondary-accent">🚗</div>
+                        <h4 class="font-semibold mb-1 text-primary-heading">Parking</h4>
+                        <p class="text-dark-contrast text-sm">Private and secure parking space</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- More Info Section -->
-        <section id="more-info" class="py-16 bg-white">
+        <section id="more-info" class="py-16 section-bg-light">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-12 text-primary">More Information</h2>
+                <h2 class="text-4xl font-bold text-center mb-12 text-primary-heading">More Information</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-xl shadow">
-                        <h4 class="font-semibold text-primary mb-2">Check-in & Check-out</h4>
-                        <p class="text-gray-700 text-sm">Check-in: 3:00 PM | Check-out: 12:00 PM. Early/late available upon request.</p>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary-heading mb-2">Check-in & Check-out</h4>
+                        <p class="text-dark-contrast text-sm">Check-in: 3:00 PM | Check-out: 12:00 PM. Early/late available upon request.</p>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-xl shadow">
-                        <h4 class="font-semibold text-primary mb-2">House Rules</h4>
-                        <p class="text-gray-700 text-sm">No smoking indoors. No pets. Quiet hours after 10 PM. Please respect the property.</p>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary-heading mb-2">House Rules</h4>
+                        <p class="text-dark-contrast text-sm">No smoking indoors. No pets. Quiet hours after 10 PM. Please respect the property.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq" class="py-16 bg-gray-100">
+        <section id="faq" class="py-16 section-bg-light">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-12 text-primary">Frequently Asked Questions</h2>
+                <h2 class="text-4xl font-bold text-center mb-12 text-primary-heading">Frequently Asked Questions</h2>
                 <div class="space-y-8 max-w-4xl mx-auto">
                     <div>
-                        <h4 class="font-semibold text-primary mb-2">Is parking available?</h4>
-                        <p class="text-gray-700">Yes, we provide free private parking for guests.</p>
+                        <h4 class="font-semibold text-primary-heading mb-2">Is parking available?</h4>
+                        <p class="text-dark-contrast">Yes, we provide free private parking for guests.</p>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-primary mb-2">Can I check in early?</h4>
-                        <p class="text-gray-700">Early check-in is possible if available. Please contact us in advance.</p>
+                        <h4 class="font-semibold text-primary-heading mb-2">Can I check in early?</h4>
+                        <p class="text-dark-contrast">Early check-in is possible if available. Please contact us in advance.</p>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-primary mb-2">Are pets allowed?</h4>
-                        <p class="text-gray-700">Sorry, pets are not allowed.</p>
+                        <h4 class="font-semibold text-primary-heading mb-2">Are pets allowed?</h4>
+                        <p class="text-dark-contrast">Sorry, pets are not allowed.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="py-16 bg-white">
+        <section id="testimonials" class="py-16 section-bg-light">
             <div class="container mx-auto px-4 text-center max-w-4xl">
-                <h2 class="text-4xl font-bold mb-12 text-primary">What Our Guests Say</h2>
+                <h2 class="text-4xl font-bold mb-12 text-primary-heading">What Our Guests Say</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-xl shadow">
-                        <p class="text-lg text-gray-700 mb-2">"Spacious, clean, and very comfortable for our family trip. Highly recommended!"</p>
-                        <span class="block text-primary font-semibold">– Aina, Kuala Lumpur</span>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <p class="text-lg text-dark-contrast mb-2">"Spacious, clean, and very comfortable for our family trip. Highly recommended!"</p>
+                        <span class="block text-secondary-accent font-semibold">– Aina, Kuala Lumpur</span>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-xl shadow">
-                        <p class="text-lg text-gray-700 mb-2">"Great location and friendly host. Will definitely come again!"</p>
-                        <span class="block text-primary font-semibold">– Jason, Singapore</span>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <p class="text-lg text-dark-contrast mb-2">"Great location and friendly host. Will definitely come again!"</p>
+                        <span class="block text-secondary-accent font-semibold">– Jason, Singapore</span>
                     </div>
                 </div>
             </div>
         </section>
 
          <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-gray-50">
+        <section id="contact" class="py-16 bg-secondary text-dark-contrast"> <!-- Changed text-light-contrast to text-dark-contrast -->
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold text-primary mb-8">Contact Us</h2>
+                <h2 class="text-4xl font-bold mb-12 text-primary-heading">Get in Touch</h2>
                 <p class="text-lg leading-relaxed max-w-2xl mx-auto mb-8">
                     Interested in booking Afamily Homestay? Contact us directly or visit our listing for more details and to check availability.
                 </p>
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
-                    <a href="https://www.booking.com/hotel/my/afamily-homestay-ipoh.en-gb.html" target="_blank" class="bg-secondary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary transition duration-300 transform hover:scale-105">View on Booking.com</a>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8"></div>
+                    <a href="https://www.booking.com/hotel/my/afamily-homestay-ipoh.en-gb.html" target="_blank" class="bg-light-contrast text-secondary-accent px-8 py-3 rounded-full text-lg font-semibold hover:bg-white transition duration-300 transform hover:scale-105">View on Booking.com</a>
                     <p class="text-lg">Or call us at: <span class="font-bold">+60 12-345 6789</span></p> <!-- Placeholder contact number -->
                 </div>
             </div>
         </section>
-    
-    <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-lg mb-2">&copy; 2025 Afamily Homestay. All rights reserved.</p>
-            <p class="text-sm">Designed with ❤️ for a comfortable urban stay.</p>
-        </div>
-    </footer>
     </main>
 
-   
+    <!-- Footer Section -->
+    <footer class="py-8 text-center">
+        <div class="flex flex-col items-center justify-center">
+            <img src="/photos/Afamily Homestay.jpg" alt="Afamily Homestay Logo" class="h-20 w-20 mb-3 rounded-full shadow">
+            <span class="text-lg font-semibold">&copy; 2025 Afamily Homestay. All rights reserved.</span>
+        </div>
+    </footer>
 
     <!-- Gallery Modal Structure -->
     <div id="galleryModal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeGalleryModal()">&times;</span>
-            <h3 id="modalTitle" class="text-3xl font-bold text-primary mb-6 text-center"></h3>
+            <h3 id="modalTitle" class="text-3xl font-bold text-primary-heading mb-6 text-center"></h3>
             <div class="carousel-container">
                 <img id="carouselImage" src="" alt="Gallery Image" class="carousel-image active">
                 <button class="carousel-nav-button left" onclick="prevImage()">&#10094;</button>
@@ -424,8 +593,6 @@
             </div>
         </div>
     </div>
-
-   
 
     <!-- JavaScript for Gallery Modal and Mobile Menu -->
     <script>
@@ -500,18 +667,18 @@
         }
 
         // Mobile Menu Logic
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileNavLinks = document.getElementById('mobile-nav-links');
+        const mobileMenuButton = document.getElementById('navbarHamburger'); // Changed ID to match new structure
+        const mobileNavLinks = document.getElementById('navbarLinks'); // Changed ID to match new structure
 
         mobileMenuButton.addEventListener('click', () => {
-            mobileNavLinks.classList.toggle('hidden');
+            mobileNavLinks.classList.toggle('active'); // Toggles 'active' class
         });
 
         // Close mobile menu when a link is clicked
-        document.querySelectorAll('#mobile-nav-links a').forEach(link => {
+        document.querySelectorAll('.navbar-link').forEach(link => {
             link.addEventListener('click', () => {
-                if (!mobileNavLinks.classList.contains('hidden')) {
-                    mobileNavLinks.classList.add('hidden');
+                if (mobileNavLinks.classList.contains('active')) {
+                    mobileNavLinks.classList.remove('active');
                 }
             });
         });
@@ -519,7 +686,7 @@
         // Close mobile menu if resized to desktop from mobile
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 768) { // Tailwind's md breakpoint
-                mobileNavLinks.classList.add('hidden'); // Ensure mobile menu is hidden on desktop
+                mobileNavLinks.classList.remove('active'); // Ensure mobile menu is hidden on desktop
             }
         });
     </script>
