@@ -7,9 +7,12 @@
   "scripts": {
     "dev": "vite --host --open",
     "build": "vite build",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod --yes"
   },
   "dependencies": {
     "vite": "^4.0.4"
+  },
+  "devDependencies": {
+    "vercel": "^44.5.0"
   }
 }
