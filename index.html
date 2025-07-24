@@ -209,6 +209,13 @@
             background-color: #E65A2C; /* Slightly darker orange on hover */
         }
 
+        .bg-secondary {
+            background-color: var(--color-secondary);
+        }
+        .bg-secondary:hover {
+            background-color: #E65A2C; /* Slightly darker orange on hover, matches hero button */
+        }
+
         /* Section backgrounds and text colors */
         .section-bg-light {
             background-color: var(--color-logo-light-blue); /* Light blue for light sections */
@@ -394,13 +401,13 @@
                     <!-- Rate 1 -->
                     <div class="card-bg-light p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
                         <h3 class="text-2xl font-bold text-primary-heading mb-4">Standard Stay</h3>
-                        <p class="text-lg text-dark-contrast mb-2">RM200/night</p>
+                        <p class="text-lg text-dark-contrast mb-2">RM290/night</p>
                         <ul class="text-dark-contrast mb-4 space-y-1">
-                            <li>✔️ 3 Bedrooms, 2 Bathrooms</li>
+                            <li>✔️ 4 Bedrooms, 3 Bathrooms</li>
                             <li>✔️ Free WiFi & Parking</li>
                             <li>✔️ Fully furnished</li>
                         </ul>
-                        <button class="mt-4 px-6 py-2 bg-secondary text-white rounded-full font-semibold hover:bg-primary transition">Book Now</button>
+                        <button class="mt-4 px-6 py-2 bg-secondary text-white rounded-full font-semibold transition">Book Now</button>
                     </div>
                     <!-- Rate 2 -->
                     <div class="card-bg-light p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
@@ -408,10 +415,9 @@
                         <p class="text-lg text-dark-contrast mb-2">RM350/night</p>
                         <ul class="text-dark-contrast mb-4 space-y-1">
                             <li>✔️ Up to 8 guests</li>
-                            <li>✔️ Extra beds included</li>
                             <li>✔️ Early check-in (subject to availability)</li>
                         </ul>
-                        <button class="mt-4 px-6 py-2 bg-secondary text-white rounded-full font-semibold hover:bg-primary transition">Book Now</button>
+                        <button class="mt-4 px-6 py-2 bg-secondary text-white rounded-full font-semibold transition">Book Now</button>
                     </div>
                 </div>
                 <p class="text-dark-contrast mt-4">RM10 per hour for early check-in or late check-out, subject to availability.</p>
@@ -503,18 +509,70 @@
             </div>
         </section>
 
-        <!-- More Info Section -->
+       <!-- More Info Section -->
         <section id="more-info" class="py-16 section-bg-light">
             <div class="container mx-auto px-4">
                 <h2 class="text-4xl font-bold text-center mb-12 text-primary-heading">More Information</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="card-bg-light p-6 rounded-xl shadow">
-                        <h4 class="font-semibold text-primary-heading mb-2">Check-in & Check-out</h4>
-                        <p class="text-dark-contrast text-sm">Check-in: 3:00 PM | Check-out: 12:00 PM. Early/late available upon request.</p>
+                        <h4 class="font-semibold text-primary-heading mb-2 flex items-center space-x-2">
+                            <span>⏰</span> <span>Check-in & Check-out Times</span>
+                        </h4>
+                        <p class="text-dark-contrast text-sm">Please respect check-in (from 3:00 PM to 12:00 AM) and check-out (from 8:00 AM to 11:30 AM) times. Inform us in advance of your arrival.</p>
                     </div>
                     <div class="card-bg-light p-6 rounded-xl shadow">
-                        <h4 class="font-semibold text-primary-heading mb-2">House Rules</h4>
-                        <p class="text-dark-contrast text-sm">No smoking indoors. No pets. Quiet hours after 10 PM. Please respect the property.</p>
+                        <h4 class="font-semibold text-primary-heading mb-2 flex items-center space-x-2">
+                            <span>🚫</span> <span>Illegal Substances & Alcohol</span>
+                        </h4>
+                        <p class="text-dark-contrast text-sm">No illegal substances and alcohol allowed on the premises.</p>
+                    </div>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary-heading mb-2 flex items-center space-x-2">
+                            <span>🍽️</span> <span>Food & Drink Policy</span>
+                        </h4>
+                        <p class="text-dark-contrast text-sm">Please don't eat or drink in the bedrooms. Only HALAL food is allowed.</p>
+                    </div>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary-heading mb-2 flex items-center space-x-2">
+                            <span>👥</span> <span>Unregistered Guests</span>
+                        </h4>
+                        <p class="text-dark-contrast text-sm">No unregistered guests allowed.</p>
+                    </div>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary-heading mb-2 flex items-center space-x-2">
+                            <span>🤫</span> <span>Noise Curfew</span>
+                        </h4>
+                        <p class="text-dark-contrast text-sm">Please respect the noise curfew after 11:00 PM until 7:00 AM.</p>
+                    </div>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary-heading mb-2 flex items-center space-x-2">
+                            <span>🚭</span> <span>Smoking Policy</span>
+                        </h4>
+                        <p class="text-dark-contrast text-sm">No smoking allowed anywhere on the property.</p>
+                    </div>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary-heading mb-2 flex items-center space-x-2">
+                            <span>🎉</span> <span>Parties & Events</span>
+                        </h4>
+                        <p class="text-dark-contrast text-sm">No parties or events allowed.</p>
+                    </div>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary-heading mb-2 flex items-center space-x-2">
+                            <span>🧽</span> <span>Cleanliness</span>
+                        </h4>
+                        <p class="text-dark-contrast text-sm">Please clean up plates, cups, and others after use. Take the trash out before you leave.</p>
+                    </div>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary-heading mb-2 flex items-center space-x-2">
+                            <span>💡</span> <span>Energy Saving</span>
+                        </h4>
+                        <p class="text-dark-contrast text-sm">Please turn off the AC and lights when you go out.</p>
+                    </div>
+                    <div class="card-bg-light p-6 rounded-xl shadow">
+                        <h4 class="font-semibold text-primary-heading mb-2 flex items-center space-x-2">
+                            <span>🛋️</span> <span>Furnishings Care</span>
+                        </h4>
+                        <p class="text-dark-contrast text-sm">Please take care of the furnishings. Damages exceeding the security deposit will be charged. Don't rearrange the furniture.</p>
                     </div>
                 </div>
             </div>
@@ -559,15 +617,15 @@
         </section>
 
          <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-secondary text-dark-contrast"> <!-- Changed text-light-contrast to text-dark-contrast -->
+        <section id="contact" class="py-16 section-bg-light">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl font-bold mb-12 text-primary-heading">Get in Touch</h2>
                 <p class="text-lg leading-relaxed max-w-2xl mx-auto mb-8">
                     Interested in booking Afamily Homestay? Contact us directly or visit our listing for more details and to check availability.
                 </p>
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8"></div>
-                    <a href="https://www.booking.com/hotel/my/afamily-homestay-ipoh.en-gb.html" target="_blank" class="bg-light-contrast text-secondary-accent px-8 py-3 rounded-full text-lg font-semibold hover:bg-white transition duration-300 transform hover:scale-105">View on Booking.com</a>
-                    <p class="text-lg">Or call us at: <span class="font-bold">+60 12-345 6789</span></p> <!-- Placeholder contact number -->
+                <div class="flex flex-col items-center space-y-4">
+                    <a href="https://www.booking.com/hotel/my/afamily-homestay-ipoh.en-gb.html" target="_blank" class="inline-block bg-secondary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary transition duration-300 transform hover:scale-105">View on Booking.com</a>
+                    <a href="tel:+60189500459" class="inline-block bg-secondary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary transition duration-300 transform hover:scale-105">Call Us: +60 18-950 0459</a>
                 </div>
             </div>
         </section>
