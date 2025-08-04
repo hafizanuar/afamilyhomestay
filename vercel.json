@@ -1,7 +1,5 @@
 {
   "rewrites": [
-    // To enable maintenance mode, uncomment the following rewrite rule.
-    // { "source": "/((?!maintenance.html).*)", "destination": "/maintenance.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
