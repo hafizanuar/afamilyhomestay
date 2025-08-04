@@ -2,6 +2,16 @@
   "rewrites": [
     {
       "source": "/(.*)",
+      "has": [
+        {
+          "type": "file",
+          "value": ".maintenance"
+        }
+      ],
+      "destination": "/maintenance.html"
+    },
+    {
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
