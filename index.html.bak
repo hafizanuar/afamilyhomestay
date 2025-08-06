@@ -347,7 +347,6 @@
             <div class="navbar-links" id="navbarLinks">
                 <a href="#location" class="navbar-link">Location</a>
                 <a href="#rates" class="navbar-link">Rates</a>
-                <a href="#availability" class="navbar-link">Availability</a>
                 <a href="#amenities" class="navbar-link">Amenities</a>
                 <a href="#gallery" class="navbar-link">Gallery</a>
                 <a href="#contact" class="navbar-link">Contact</a>
@@ -367,7 +366,6 @@
             <h1 class="text-5xl md:text-6xl font-bold mb-4 animate-fade-in-down">Afamily Homestay, Ipoh</h1>
             <p class="text-xl md:text-2xl mb-8 animate-fade-in-up">Your comfortable and spacious retreat in Ipoh, Malaysia.</p>
             <a href="#contact" class="inline-block bg-secondary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary transition duration-300 transform hover:scale-105">Book Your Stay</a>
-            <a href="#availability" class="inline-block bg-secondary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary transition duration-300 transform hover:scale-105">See Availability</a>
         </div>
     </section>
 
@@ -423,21 +421,6 @@
                     </div>
                 </div>
                 <p class="text-dark-contrast mt-4">RM10 per hour for early check-in or late check-out, subject to availability.</p>
-            </div>
-        </section>
-
-        <!-- Availability Section -->
-        <section id="availability" class="py-16 section-bg-light">
-            <div class="container mx-auto px-4 text-center max-w-4xl">
-                <h2 class="text-4xl font-bold text-primary-heading mb-6">Availability</h2>
-                <p class="text-lg leading-relaxed text-dark-contrast mb-8">
-                    Check our calendar below for available dates.
-                </p>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden p-4 md:p-6 lg:p-8">
-                    <div class="aspect-w-16 aspect-h-9">
-                        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FKuala_Lumpur&showPrint=0&src=YWZhbWlseWhvbWVzdGF5Y2VudHJlQGdtYWlsLmNvbQ&src=ZW4ubWFsYXlzaWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=NWkxdjM4NTAyZzBidnYza2VxZWZtMjVmOGcyMG9scnJAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&src=cXVoc2Ricm5jNGo2MnRrN3A4ajhmbzg4c2psdDJhbGZAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&src=bWFsYXlzaWFAZ21haWwuY29t&color=%23039be5&color=%234285f4&color=%23f09300&color=%23e4c441&color=%23f4511e" style="border:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-                    </div>
-                </div>
             </div>
         </section>
 
